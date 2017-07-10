@@ -1,27 +1,45 @@
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
 function mkcd
 {
   dir="$*";
   mkdir -p "$dir" && cd "$dir";
 }
 
-alias school='ssh jtotto@linux.student.cs.uwaterloo.ca'
+alias school='ssh -o TCPKeepAlive=yes -o ServerAliveInterval=50 jtotto@ubuntu1404-006.student.cs.uwaterloo.ca'
+alias clip='xclip -selection clipboard'
+alias off='sudo shutdown -h now'
+alias cs452-news='tin -r -g uw uw.cs.cs452'
 
-function lines
+function cd()
 {
-   for i in {1..5}
-   do
-       echo ""
-   done
+    builtin cd "$@"
+    if [[ "$TERM" == *"screen"* ]]; then
+        printf "\033k%s\033\\" `pwd`
+    fi
 }
 
+function man()
+{
+    if [[ "$TERM" == *"screen"* ]]; then
+        printf "\033kman %s\033\\" "$@"
+    fi
+    /usr/bin/man "$@"
+    cd .
+}
+
+alias crep='grep -nI --exclude=tags'
+
+function open()
+{
+    gnome-open "$@" 1>/dev/null 2>&1
+}
+
+# Eternal bash history.
+# ---------------------
+# Undocumented feature which sets the size to "unlimited".
+# http://stackoverflow.com/questions/9457233/unlimited-bash-history
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
+# Change the file location because certain bash sessions truncate .bash_history file upon close.
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+export HISTFILE=~/.bash_eternal_history
