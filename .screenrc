@@ -1,0 +1,26 @@
+vbell off
+bind l focus next
+bind h focus prev
+defscrollback 10000
+
+bind q
+bind w
+bind e
+bind r
+bind t
+bind y
+bind u
+bind i
+bind o
+bind p
+
+bind q select 10
+bind w select 11
+bind e select 12
+bind r select 13
+bind t select 14
+bind y select 15
+bind u select 16
+bind i select 17
+bind o select 18
+bind p select 19
