@@ -1,7 +1,7 @@
 vbell off
-bind l focus next
-bind h focus prev
-defscrollback 10000
+defscrollback 10001
+startup_message off
+eval "markcv 1"
 
 bind q
 bind w
@@ -24,3 +24,38 @@ bind u select 16
 bind i select 17
 bind o select 18
 bind p select 19
+
+bind h
+bind j
+bind k
+bind l
+bind ;
+bind h focus mark 1
+bind j focus mark 2
+bind k focus mark 3
+bind l focus mark 4
+bind ; focus mark 5
+
+bind N
+bind M
+bind H
+bind J
+bind K
+bind L
+bind Z
+bind F
+
+bind N eval "markcv 1" "split -v" "focus next" "markcv 2" "screen 1" "split -v" "focus next" "markcv 3" "screen 2" "split -v " "focus next" "markcv 4" "screen 3" "split -v" "focus next" "markcv 5" "screen 4" "focus next"
+bind F eval "markcv 1" "split -v" "focus next" "markcv 2" "screen 1" "split -v" "focus next" "markcv 3" "screen 2" "split -v " "focus next" "markcv 4" "screen 3" "focus next"
+bind B eval "markcv 2" "split -v" "focus next" "markcv 3" "screen 1" "split -v" "focus next" "markcv 4" "screen 2" "focus next"
+bind V eval "markcv 2" "split" "focus next" "markcv 3" "screen 1" "split" "focus next" "markcv 4" "screen 2" "focus next"
+bind Z eval "markcv 2" "split -v" "focus next" "markcv 3" "screen 1" "focus next"
+bind M exec /home/jtotto/source/dotfiles/screen-gc.sh
+
+bind H eval "markcv 1"
+bind J eval "markcv 2"
+bind K eval "markcv 3"
+bind L eval "markcv 4"
+
+bind g
+bind g exec /home/jtotto/source/dotfiles/screen-chdir.sh

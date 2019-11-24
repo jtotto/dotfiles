@@ -1,3 +1,7 @@
+if [[ "$TERM" != *"screen"* ]]; then
+    screen
+fi
+
 function mkcd
 {
   dir="$*";
@@ -8,6 +12,8 @@ alias school='ssh -o TCPKeepAlive=yes -o ServerAliveInterval=50 jtotto@ubuntu140
 alias clip='xclip -selection clipboard'
 alias off='sudo shutdown -h now'
 alias cs452-news='tin -r -g uw uw.cs.cs452'
+alias eow='python source/dotfiles/eow.py'
+alias cal='ncal -M -A 1'
 
 function cd()
 {
@@ -24,6 +30,15 @@ function man()
     fi
     /usr/bin/man "$@"
     cd .
+}
+
+function finish()
+{
+    clear
+    TASKNAME=`task rc.verbose=nothing rc._forcecolor=on $1 name | tr -t '\n' ''`
+    echo -e "Finished \"$TASKNAME\" :)"
+    task $1 done
+    task
 }
 
 alias crep='grep -nI --exclude=tags'
@@ -43,3 +58,5 @@ export HISTTIMEFORMAT="[%F %T] "
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
 # http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
 export HISTFILE=~/.bash_eternal_history
+
+export PATH=$PATH:~/.local/bin:~/.cabal/bin:~/source/bmndr:~/source/scripts

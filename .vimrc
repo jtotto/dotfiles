@@ -13,6 +13,8 @@ inoremap {{     {
 inoremap {}     {}
 set tags=tags;/
 let g:tex_flavor = "latex"
+nnoremap zj moo<esc>k`o
+nnoremap zk moO<esc>`o
 
 autocmd VimEnter,BufReadPre,FileReadPre * silent call GNUScreenEnter()
 autocmd VimLeave * silent call GNUScreenLeave()
